@@ -60,7 +60,7 @@ experience_int<-c(replace(experience, experience=='R', 0)) #repleacing all r wit
 
 
 
-
+experience_int<-as.integer(experience_int)#converting from char to integer 
 
 
 
