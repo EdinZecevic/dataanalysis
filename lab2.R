@@ -39,7 +39,7 @@ salary
 
 salary(digits=2)
 
-round(salary/1000000, 2)#showing the salary in milions
+salary_inmilions<-round(salary/1000000, 2)#showing the salary in milions
 
 replace(experience, 'R', 0)
 
@@ -58,11 +58,33 @@ experience[experience=='R']
 
 experience_int<-c(replace(experience, experience=='R', 0)) #repleacing all r with 0
 
-
-
 experience_int<-as.integer(experience_int)#converting from char to integer 
 
+position[position=='C']
+position<-c(replace(position, position=='C', 'center'))
+position<-c(replace(position, position=='SF', 'small_fwd'))
+position<-c(replace(position, position=='PF', 'power_fwd'))
+position<-c(replace(position, position=='SG', 'shoot_guard'))
+
+salary<-round(salary/1000000,2)
+experience<-strtoi(experience)
+experience[is.na(experience)]<-0
 
 
+position[position=="C"] <- "center"
+position[position=="SF"] <- "small_fwd"
+position[position=="PF"] <- "power_fwd"
+position[position=="SG"] <- "shoot_guard"
+position[position=="PG"] <- "point_guard"
 
+position<-factor(position)
+
+points<-points1+points2+points3
+
+plot(points,salary_inmilions)
+
+plot(log(points),log(salary_inmilions))
+
+plot(log(points),log(salary_inmilions),pch = 0:18)#plotting with characters
+plot(log(points),log(salary_inmilions),pch = 0:18)#plotting with characters
 
