@@ -23,8 +23,10 @@ position<-factor(position)
 
 points_total<-points1+points2+points3
 
+points_total<-points1+points2+points3
+
 plot(points_total,salary,pch=20,col=rgb(red = 1, green = 0, blue = 0, alpha = 0.5),cex=1.2,xlab = 'Points',ylab = 'Salary (in millions)'
-     ,main = 'Scatterplot of Points and Salary')
+     ,main = 'Scatterplot')
 
 lines(points_total,salary)
 abline(points_total,salary)
@@ -60,10 +62,18 @@ summary(Y_hat)
 
 summary(points_total)
 
-points_total<-points1+points2+points3
 
 abline(b1, b0, salary_inmilions, points_total)
 
 abline(Y_hat, points_total)
 
 lines(Y_hat, points_total)
+
+#slope tg(alfa) intercept 
+
+abline(b0, b1)
+
+lines(b0, b1)
+
+lowess(salary_inmilions, points_total)
+
