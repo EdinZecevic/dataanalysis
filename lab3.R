@@ -51,8 +51,4 @@ abline(salary_inmilions, points)
 
 lines(salary_inmilions, points)
 
-b1<- cor(x,y)*c
-
-b0<-y-(b1*x)
-
-cc<-b0+b1*y
+text(locator(),labels=c('Y = 1.69 + 0.015X'))
