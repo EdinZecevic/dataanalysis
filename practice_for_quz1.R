@@ -130,3 +130,17 @@ dimnames(df)
 load('usa-states.RData')
 
 str(airquality)
+
+str(airquality, vec.len = 1)
+head(airquality, n = 5)
+
+summary(airquality)
+
+object.size(airquality)
+attributes(airquality)
+
+airquality[1]
+airquality[1,2]
+
+airquality[airquality$Month==5, ]
+
