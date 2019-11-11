@@ -151,3 +151,68 @@ attributes(airquality)
 
 airquality[2:4, 2:4]
 
+airquality[ ,"Ozone",drop=FALSE]
+
+airquality$"Ozone"
+airquality$Ozone
+
+
+these = c('Day', 'Wind', 'Rain','Temp', 'XY', 'Snow')
+Q = names(airquality) %in% these
+airquality[ ,Q]
+
+
+cols3 = c(rep(TRUE, 3),rep(FALSE, 3))
+airquality[ ,cols3]
+
+dimnames(airquality)
+
+airquality[,1,drop=FALSE]
+
+airquality[1, "Ozone"]
+
+airquality["Ozone"]
+
+airquality$"Ozone"
+airquality$Ozone
+
+airquality[["Ozone"]]
+
+df <- data.frame(
+  name = c( "Anakin" , "Padme" , "Luke" ,"Leia"),
+  gender = c("male", "female", "male", "female"),
+  height = c(1.88, 1.65, 1.72, 1.50),
+  weight = c(84, 45, 77, 49)
+)
+
+df$eyecolur<-c("Red", "Blue", "Pink", "Brown")
+
+str(df)
+
+factor(df$eyecolur)
+
+haircolour<-c("Red", "Blue", "Pink", "Brown")
+
+df<-cbind(df, haircolour)
+
+new<-c("Edin", "male", 1.78, 76)
+
+df<-rbind(df, new)
+
+df$x<-c(1:5)
+
+df[ , c("w", "y")] <- cbind(1:5,6:10)
+
+df$x<-NULL
+
+df<-df[,1:4]
+
+df[df$name == "Luke", ]
+
+sort(df$weight)
+
+df[order(df$weight),]
+
+df$name[[5]]<-c("Edin")
+
+df[5,1]="Edin"
