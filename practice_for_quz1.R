@@ -216,3 +216,6 @@ df[order(df$weight),]
 df$name[[5]]<-c("Edin")
 
 df[5,1]="Edin"
+
+#continious 
+#generic is plot
