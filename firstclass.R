@@ -18,6 +18,8 @@ str(state)
 
 object.size(capital)
 
+
+
 tail(state) 
 
 names(state)<-state

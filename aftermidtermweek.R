@@ -30,3 +30,18 @@ box()
 title(main = "Maunga Whau Volcano", font.main = 4)
 
 symbols(iris[, 1], iris[, 2], circles = iris[, 3]/100,inches = FALSE)
+
+origin <- 'http://archive.ics.uci.edu/ml/machine-learning-databases/abalone/abalone.data'
+destination <- 'abalone.data'
+download.file(origin, destination)
+
+abalone <- read.table("abalone.data", sep = ",")
+
+head(abalone)
+
+str(abalone, vec.len = 1)
+
+abalone[abalone=="V1"] <- "Sex"
+
+
+abalone[,1]
