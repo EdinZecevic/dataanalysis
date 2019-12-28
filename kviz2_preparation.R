@@ -145,7 +145,7 @@ x <- 2005:2015
 y <- c(81, 83, 84.3, 85, 85.4, 86.5, 88.3, 88.6, 90.8, 91.1, 91.3)
 plot(x, y, type = 'n', xlab = "Time", ylab = "Values")
 lines(x, y, lwd = 2)
-points(x,y, pch=3, cex=2, col="blue")
+points(x,y, pch=3, cex=3, col="blue")
 title(main = "Line Graph Example")
 
 # drawing straight lines
@@ -200,3 +200,328 @@ axis(2, las = 1)
 box()
 title(main = "A Fitted Regression Line")
 
+plot.window(xlim = c(0, 1), ylim = c(0, 1))
+
+plot.new()
+plot.window(xlim = c(0, 1), ylim = c(0, 1))
+arrows(.05, .075, .45, .9, code = 1)
+arrows(.55, .9, .95, .075, code = 2)
+arrows(.1, 0, .9, 0, code = 3)
+text(.5, 1, "A", cex = 1.5)
+text(0, 0, "B", cex = 1.5)
+text(1, 0, "C", cex = 1.5)
+
+install.packages("ggplot2")
+# load ggplot2
+library(ggplot2)
+
+starwars <- read.csv("starwarstoy.csv")
+starwars
+
+ggplot(data = starwars) +
+  geom_point(aes(x = height, y = weight, color = jedi,))
+
+ggplot(data = mtcars, aes(x = mpg, y = hp)) +
+  geom_point()
+
+ggplot(data = mtcars) +
+  geom_point(aes(x = mpg, y = hp))
+
+ggplot() +
+  geom_point(data = mtcars, aes(x = mpg, y = hp))
+
+ggplot(data = mtcars, aes(x = mpg, y = hp)) +
+  geom_line()
+
+ggplot(data = mtcars) +
+  geom_line(aes(x = mpg, y = hp))
+
+ggplot(data = mtcars, aes(x = mpg, y = hp)) +
+  geom_point(size = 3, col="green")
+
+# 'shape' accepts 'pch' values
+ggplot(data = mtcars, aes(x = mpg, y = hp)) +
+  geom_point(size = 3, color = "tomato", shape = 15)
+mtcars<-mtcars
+# mapping aesthetic color
+ggplot(mtcars, aes(x = mpg, y = hp)) +
+  geom_point(aes(color = cyl))
+
+ggplot(mtcars, aes(x = mpg, y = hp)) +
+  geom_point(aes(color = carb))
+
+ggplot(data = mtcars, aes(x = mpg, y = hp)) +
+  geom_point(size = 3, color = "tomato", shape=24) +
+  xlab("miles per gallon") +
+  ylab("horse power") +
+  ggtitle("Scatter plot with ggplot2")+
+theme_bw()
+
+ggplot(data = mtcars,aes(x=mpg, y=hp))+
+  geom_point(aes(size=disp),shape=17, color = "tomato")+
+  xlab("miles per gallon")+
+  ylab("horse power")+
+  geom_smooth(method = "lm")
+
+ggplot(data = mtcars, aes(x = mpg, y = hp)) +
+  geom_point(aes(color = cyl))
+
+ggplot(data = mtcars, aes(x = mpg, y = hp)) +
+  geom_point(aes(color = as.factor(cyl)))
+
+ggplot(data = mtcars, aes(x=mpg, y=disp))+
+  geom_point(aes(color =factor(am), size = hp), alpha=0.7)+
+  xlab("miles per gallon")+
+  ylab("displacement")+
+  title("Scatter plot with ggplot2")
+
+ggplot(data = mtcars, aes(x = mpg)) +
+  geom_histogram(binwidth = 2)
+
+ggplot(data = mtcars, aes(x = mpg)) +
+  geom_density(fill="blue", alpha=0.5)+
+  theme_bw()
+
+ggplot(data = mtcars, aes(x = mpg)) +
+  geom_line(stat = 'density', col = "#a868c0", size = 2)
+
+mpg_hp <- ggplot(data = mtcars, aes(x = mpg, y = hp)) +
+  geom_point(size = 3, color = "tomato")
+print(mpg_hp)
+
+
+# ggplot object
+obj <- ggplot(data = mtcars, aes(x = mpg, y = hp, label = rownames(mtcars)))
+
+obj+ ggtitle("Scatter plot") +xlab("miles per gallon")+ ylab("horse power")+ 
+  geom_text(aes(color=factor(am)))
+
+ggplot(data = mtcars, aes(x = mpg, y = hp)) +
+  geom_point(aes(color = factor(am))) +
+  scale_x_continuous(name = "miles per gallon",
+                     limits = c(10, 40),
+                     breaks = c(10, 15, 20,25,  30,35, 40))+
+  scale_y_continuous(name="horse power", 
+                     limits=c(0,400), 
+                     breaks = c(100,200,300,400))
+
+ggplot(data = mtcars, aes(x = mpg, y = hp)) +
+  geom_line(aes(color = factor(am))) +
+  scale_color_manual(values = c("orange", "purple"))
+
+
+ggplot(data = mtcars, aes(x = mpg, y = hp)) +
+  geom_point(aes(color = factor(am))) +
+  scale_color_manual(values = c("orange", "purple"),
+                     name = "transmission",
+                     labels = c('no', 'yes'))
+
+ggplot(data = mtcars, aes(x = mpg, y = hp)) +
+  geom_point(color = "#3088f0") +
+  facet_wrap(~ cyl)
+
+tents <- read.csv("tents1.csv")
+
+
+ggplot(data = tents, aes(x = Year, y = Percent_opposed)) +
+  geom_line(aes(color=Race)) +
+  scale_color_manual(values = c("red","green","blue"), 
+                     labels=c("black", "other", "white"))+
+  scale_y_continuous(breaks = c(10,20,30,40,50))+
+  xlab("Year") +
+  ylab("%Opposed to harsher gun law") +
+  ggtitle("Would you oppose harsher gun law?") +
+  theme_bw()
+
+
+median(1:10)
+
+a <- 12345
+525 + 34 - 280
+median(1:10)
+
+a <- 10
+b <- 20
+d <- 30
+
+a <- 10; b <- 20; d <- 30
+
+{
+  a <- 10
+  b <- 20
+  d <- 30
+}
+
+mtcars[1:10]
+{5 + 3; 4 * 2; 1 + 3}
+
+z <- {x <- 4; y <- x^2; x + y}
+
+square <- function(x) {
+  x^2
+}
+square(10)
+
+sum_sqr <- function(x, y) {
+  xy_sum <- x + y
+  xy_ssqr <- (xy_sum)^2
+  list(sum = xy_sum,
+       sumsqr = xy_ssqr)
+}
+sum_sqr(3, 5)
+
+add <- function(x, y) {
+  x + y
+}
+add(2, 3)
+
+# function with 2 arguments
+add <- function(x, y) z<-x + y
+# function with no arguments
+hi <- function() print("Hi there!")
+hi()
+
+add(1,1)
+
+hey <- function(x = "") {
+  cat("Hey", x, "\nHow is it going?")
+}
+hey()
+## Hey
+## How is it going?
+hey("Gaston Sinan")
+
+abc <- function(a, b, c = 3) {
+  if (missing(b)) {
+    result <- a * 2 + c
+  } else {
+    result <- a * b + c
+  }
+  result
+}
+abc(2)
+abc(2,2)
+
+abcd <- function(a, b = 2, c = 3, d = NULL) {
+  if (is.null(d)) {
+    result <- a * b + c
+  } else {
+    result <- a * b + c * d
+  }
+  result
+}
+abcd(2)
+abcd(2,2,2,2)
+
+myplot <- function(x, y, col = "#3488ff", pch = 19) {
+  plot(x, y, col = col, pch = pch)
+}
+myplot(1:5, 1:5)
+
+# encapsulate your code
+variance <- function(x) {
+  sum((x - mean(x))^2) / (length(x) - 1)
+}
+# check that it works
+variance(1:2)
+
+
+mean(2:8)
+
+# adapt it gradually
+variance <- function(x, na.rm = FALSE) {
+  if (na.rm) {
+    x <- x[!is.na(x)]
+  }
+  sum((x - mean(x))^2) / (length(x) - 1)
+}
+variance(c(1:9, NA), na.rm = TRUE)
+
+area_rect <- function(length = 1, width = 1) {
+  length * width
+}
+# default
+area_rect()
+# specifying argument values
+area_rect(length = 10, width = 2)
+area_rect(10,2)
+
+x <- 7
+if (x >= 0) 
+print("it is positive")
+
+set.seed(9)
+x <- round(rnorm(1), 1)
+if (x > 0) {
+  print("x is positive")
+} else if (x < 0) {
+  print("x is negative")
+} else if (x == 0) {
+  print("x is zero")
+}
+
+true_false <- c(TRUE, FALSE)
+ifelse(true_false, "false", "false")
+
+first_name <- "harry"
+last_name <- switch(
+  first_name,
+  harry = "potter",
+  ron = "weasley",
+  hermione = "granger",
+  "not available")
+last_name
+
+switch(
+  3,
+  "one",
+  "two",
+  "three",
+  "four")
+
+student <- "ron"
+house <- switch(
+  dracoo = "sinan",
+  student,
+  harry = ,
+  ron = ,
+  hermione = "gryffindor",
+  draco = "slytherin")
+house
+
+x <- 1:5
+y <- x
+for (i in 1:5) {
+  y[i] <- x[i]^2
+}
+y
+
+x <- 1:5
+y <- x^2
+y
+
+set.seed(6354)
+dat <- data.frame(
+  replicate(6, sample(c(1:10, -99), 6, rep = TRUE))
+)
+names(dat) <- letters[1:6]
+dat
+
+for (i in 1:5) {
+  x[i] <- i
+}
+x[2]
+
+x <- numeric(5)
+x
+
+for (i in 1:5) {
+  x[i] <- i
+}
+x
+
+"%u%" <- function(x, y) {
+  union(x, y)
+}
+
+1:5 %u% c(1, 3, 5, 7, 9)

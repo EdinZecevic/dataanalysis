@@ -5,8 +5,8 @@ library(ggplot2)
 
 ?ggplot
 tents <- read_csv("https://raw.githubusercontent.com/ucb-stat133/stat133-fall-2015/master/data/tents1.csv")
-tents1 <- read_csv("tents1.csv")
-tents<-tents <- read_csv("PercOpposedHarsheGunLaw.csv")
+tents <- read.csv("tents1.csv")
+tents<- read.csv("PercOpposedHarsheGunLaw.csv")
 
 tents[2]
 
