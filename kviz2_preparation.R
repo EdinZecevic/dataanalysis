@@ -215,7 +215,7 @@ install.packages("ggplot2")
 # load ggplot2
 library(ggplot2)
 
-starwars <- read.csv("starwarstoy.csv")
+
 starwars
 
 ggplot(data = starwars) +
