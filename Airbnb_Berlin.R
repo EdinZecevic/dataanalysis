@@ -24,6 +24,49 @@ average<-function(x){       #returns average number
 }
 
 average(berlin$price)
+average(berlin$host_response_rate)
+factor(berlin$host_listings_count)
+factor(berlin$accommodates)
+factor(berlin$review_scores_rating)
 
-average(berlin$host_listings_count)
+plot(factor(berlin$review_scores_rating), factor(berlin$host_listings_count),
+     pch = 19, col =  1:10, cex = 0.1)
 
+install.packages("ggplot2")
+# load ggplot2
+library(ggplot2)
+
+max(berlin$price)
+
+max(berlin$accommodates)
+
+ggplot(data = berlin,aes(x=factor(review_scores_rating), y=factor(host_listings_count)))+
+  geom_point(aes(color =factor(host_listings_count), size =1), alpha=0.7)+
+  title("Corelation between review based score and number of listing for each host")+
+  xlab("review_scores_rating")+
+  ylab("host_listings_count")
+
+ggplot(data = berlin,aes(x=factor(price), y=factor(host_listings_count)))+
+  geom_point(aes(color =factor(host_listings_count), size =1), alpha=0.7)+
+  title("Corelation between review based score and number of listing for each host")+
+  xlab("price")+
+  ylab("host_listings_count")
+
+availabilityPercentage<-function(x){ #function that calculates the
+  new<-c(x)                         #availability in percentage of a year
+  newNew<-c()
+  for (i in new) {
+    singleElement=(new[i]*100)/365
+    newNew[i]=singleElement
+  }
+  return(newNew)
+}
+availabilityPercentage<-availabilityPercentage(berlin$availability_365)
+average(availabilityPercentage)# average availability of all accomodations in Berlin
+
+scatter.smooth(x=berlin$availability_365, y=berlin$minimum_nights, 
+               main="Linear Realtion")  # scatterplot
+
+cor(berlin$availability_365, berlin$minimum_nights)#corelation
+
+max(berlin$minimum_nights)
