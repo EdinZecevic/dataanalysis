@@ -25,7 +25,7 @@ average<-function(x){       #returns average number
 
 average(berlin$price)
 average(berlin$host_response_rate)
-factor(berlin$host_listings_count)
+average(berlin$host_listings_count)
 factor(berlin$accommodates)
 factor(berlin$review_scores_rating)
 
@@ -69,4 +69,11 @@ scatter.smooth(x=berlin$availability_365, y=berlin$minimum_nights,
 
 cor(berlin$availability_365, berlin$minimum_nights)#corelation
 
-max(berlin$minimum_nights)
+max(berlin$mirenimum_nights)
+
+a<-lm(berlin$availability_365~berlin$minimum_nights)
+plot(a)
+
+ggplot(data = berlin, aes(x = berlin$availability_365, y = berlin$minimum_nights)) +
+  geom_point() +
+  geom_smooth(method = "lm")
