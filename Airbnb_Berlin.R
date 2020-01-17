@@ -71,8 +71,6 @@ cor(berlin$availability_365, berlin$minimum_nights)#corelation
 
 max(berlin$mirenimum_nights)
 
-a<-lm(berlin$availability_365~berlin$minimum_nights)
-plot(a)
 
 ggplot(data = berlin, aes(x = berlin$availability_365, y = berlin$minimum_nights)) +
   geom_point() +
