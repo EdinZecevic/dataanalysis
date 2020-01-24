@@ -31,7 +31,6 @@ newBerlin <- newBerlin[!is.na(newBerlin$beds),]#Deleted all accomodations that h
 newBerlin <- newBerlin[newBerlin$price!=0,]#Deleted all accomodations that have price 0
 newBerlin <- newBerlin[!is.na(newBerlin$price),]#Deleted all accomodations that have NULL price
 
-
 #deposit EDDITING
 #if deposit is empty or NA it can be setted to 0, becouse if it is not mentioned
 #on listing you do not have to pay it

@@ -53,10 +53,15 @@ ggplot(data = berlin, aes(x=availabilityPercentage, y=berlin$minimum_nights)) +
   geom_smooth(method = "lm")#Linear regresion x = availabilityPercentage(using function), y = berlin$minimum_nights
 
 
+listing_Count_Categorised<-cut(newBerlin$host_listings_count, 
+  breaks= c(0,1,3,5,10,20,100,Inf),labels = c("only 1","2-3","4-5","6-10","11-20","21-100","101+"))
 
+price_Categorised<-cut(newBerlin$price, breaks = c(0,10,20,30,40,50,60,70,80,90,100,150,200,250,300,400,500,600,700,800,900,1000,Inf),
+                       labels = c("to 10","11-20","21-30","31-40","41-50","51-60","61-70","71-80","81-90","91-100"
+                                  ,"101-150","151-200","201-250","251-300","301-400","401-500","501-600","601-700"
+                                  ,"701-800","801-900","901-1000","1001+"))
 
-listing_Count_Categorised<-cut(berlin$host_listings_count, breaks = 10)
-price_Categorised<-cut(berlin$price, breaks = 100)
+max(newBerlin$price)
+as.numeric(listing_Count_Categorised)
 
-
-
+cut(numericVector, 3, labels = c("low","med","high"))

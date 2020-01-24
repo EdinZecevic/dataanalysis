@@ -26,6 +26,15 @@ ggplot(data = berlin, aes(x=berlin$availability_365, y=berlin$minimum_nights)) +
   geom_point(aes(color = "red")) +
   geom_smooth(method = "lm")#Linear regresion x = berlin$availability_365, y = berlin$minimum_nights
 
-ggplot(data = newBerlin, aes(x=availabilityPercentage, y=newBerlin$minimum_nights)) +
+ggplot(data = newBerlin, aes(x=newBerlin$availabilityPercentage, y=newBerlin$minimum_nights)) +
   geom_point(aes(color = "red")) +
   geom_smooth(method = "lm")#Linear regresion x = availabilityPercentage(using function), y = berlin$minimum_nights
+
+
+
+ggplot(data = newBerlin, aes(x=listing_Count_Categorised, y=price_Categorised)) +
+  geom_point(aes(color = newBerlin$cancellation_policy), size=3)+
+  labs(title = "Listing count and price relation", subtitle = "Cancelation policy coloured",
+       x="Listing count", y= "Price", colour = "Cancelation policy")+
+  geom_smooth(method = "lm") 
+
