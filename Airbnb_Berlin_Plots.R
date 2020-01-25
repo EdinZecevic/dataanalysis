@@ -26,15 +26,36 @@ ggplot(data = berlin, aes(x=berlin$availability_365, y=berlin$minimum_nights)) +
   geom_point(aes(color = "red")) +
   geom_smooth(method = "lm")#Linear regresion x = berlin$availability_365, y = berlin$minimum_nights
 
-ggplot(data = newBerlin, aes(x=newBerlin$availabilityPercentage, y=newBerlin$minimum_nights)) +
+ggplot(data = berlin, aes(x=berlin$availabilityPercentage, y=berlin$minimum_nights)) +
   geom_point(aes(color = "red")) +
   geom_smooth(method = "lm")#Linear regresion x = availabilityPercentage(using function), y = berlin$minimum_nights
 
 
 
 ggplot(data = newBerlin, aes(x=listing_Count_Categorised, y=price_Categorised)) +
-  geom_point(aes(color = newBerlin$cancellation_policy), size=3)+
+  geom_point(aes(color = berlin$cancellation_policy), size=3)+
   labs(title = "Listing count and price relation", subtitle = "Cancelation policy coloured",
        x="Listing count", y= "Price", colour = "Cancelation policy")+
   geom_smooth(method = "lm") 
+
+
+#Aswer on question: Does number of listings increase price, review score and availability of each listing?
+ggplot(data = berlin, aes(x=listing_Count_Categorised, y=price_Categorised)) +
+  geom_abline()+
+  labs(title = "Listing count and price relation",
+       x="Listing count", y= "Price")+
+  geom_smooth(method = "lm")
+
+ggplot(data = berlin, aes(x=listing_Count_Categorised, y=availability_365_Categorised)) +
+  geom_abline()+
+  labs(title = "Listing count and Availability relation",
+       x="Listing count", y= "Availability")+
+  geom_smooth(method = "lm")
+
+ggplot(data = berlin, aes(x=listing_Count_Categorised, y=review_scores_rating_Categorised)) +
+  geom_abline()+
+  labs(title = "Listing count and Review scores rating relation",
+       x="Listing count", y= "Review scores rating")+
+  geom_smooth(method = "lm")
+                            
 
